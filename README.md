@@ -38,6 +38,8 @@ The dataset contains customer-related information including:
 * Categorical variables encoded using pipelines
 * Data split into training and testing sets
 
+![distrubution of churn](images/dist%20of%20churn.png)
+
 ### Models Implemented
 
 * Logistic Regression
@@ -56,6 +58,18 @@ The dataset contains customer-related information including:
 | Voting Ensemble     | 0.9595     | **0.9868** | 0.7426     | 0.8475     | 0.9297  |
 | Decision Tree       | 0.9265     | 0.7549     | 0.7624     | 0.7586     | 0.8591  |
 | Logistic Regression | 0.8576     | 0.6000     | 0.1782     | 0.2748     | 0.8281  |
+## Visuals
+
+ - Gradient boosting confusion matrix which shows that this model is our top choice for churn prevention. It correctly identified 80 churners and had the lowest "miss" rate (only 21 False Negatives). This ensures the business captures the most at-risk revenue.
+
+![Confusion Matrix](images/gb%20confusion%20matrix.png)
+
+![ROC-AUC curve of GB](images/ROC-AUc%20curve.png)
+
+
+- feature inportance to see which features are high in leading to customer churn
+
+![Feature importance ](images/feature%20importnace.png)
 
 
 ## 🏆 Final Model
