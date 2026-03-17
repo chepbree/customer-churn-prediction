@@ -1,10 +1,11 @@
 import matplotlib.pyplot as plt
+from sklearn.model_selection import cross_val_score
 from sklearn.metrics import (
     accuracy_score, classification_report, confusion_matrix, 
     roc_curve, auc, precision_recall_curve, ConfusionMatrixDisplay
 )
 
-def evaluate_model(model_name, model, X_test, y_test, plot_roc=True, plot_visuals=True):
+def evaluate_model(model_name, model, X_test, y_test, plot_roc=True, plot_visuals=True, cv=None, X_train=None, y_train=None):
     """
     Evaluates a classification model and plots the ROC curve.
     """
@@ -17,7 +18,14 @@ def evaluate_model(model_name, model, X_test, y_test, plot_roc=True, plot_visual
     print("\nClassification Report:")
     print(classification_report(y_test, y_pred))
 
-    # 3. Plot Confusion Matrix
+    # 3. Cross-Validation 
+    if cv is not None and X_train is not None and y_train is not None:
+        cv_scores = cross_val_score(model, X_train, y_train, cv=cv, scoring="accuracy")
+        print(f"\nCross-Validation ({cv}-fold):")
+        print(f"Scores: {cv_scores}")
+        print(f"Mean CV Score: {cv_scores.mean():.4f}")
+
+    # 4. Plot Confusion Matrix
     if plot_visuals:
      cm = confusion_matrix(y_test, y_pred)
      disp = ConfusionMatrixDisplay(confusion_matrix=cm)
@@ -27,7 +35,7 @@ def evaluate_model(model_name, model, X_test, y_test, plot_roc=True, plot_visual
      plt.xlabel('Predicted Label')
      plt.show()
 
-    # 4. Plot ROC Curve
+    # 5. Plot ROC Curve
     if plot_roc:
         if hasattr(model, "predict_proba"):
             y_prob = model.predict_proba(X_test)[:, 1]
