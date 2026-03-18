@@ -58,6 +58,21 @@ The dataset contains customer-related information including:
 | Voting Ensemble     | 0.9595     | **0.9868** | 0.7426     | 0.8475     | 0.9297  |
 | Decision Tree       | 0.9265     | 0.7549     | 0.7624     | 0.7586     | 0.8591  |
 | Logistic Regression | 0.8576     | 0.6000     | 0.1782     | 0.2748     | 0.8281  |
+
+
+Interpretation
+
+Gradient Boosting achieved the highest F1-score (0.865)
+- This means it provides the best balance between precision and recall, making it the most effective at identifying churners while limiting false predictions.
+
+Random Forest achieved the highest ROC AUC (0.939)
+- This indicates it has a slightly better ability to distinguish between churners and non-churners overall, but its lower F1-score suggests it is less balanced in actual predictions.
+
+Voting Ensemble did not outperform individual models
+- This suggests that combining models did not add value, likely because Gradient Boosting already captures the patterns effectively
+
+-Logistc regression performed poorely both in overall perfomance
+
 ## Visuals
 
  - Gradient boosting confusion matrix which shows that this model is our top choice for churn prevention. It correctly identified 80 churners and had the lowest "miss" rate (only 21 False Negatives). This ensures the business captures the most at-risk revenue.
@@ -72,23 +87,24 @@ The dataset contains customer-related information including:
 ![Feature importance ](images/feature%20importnace.png)
 
 
-## 🏆 Final Model
+## Perfomance Analysis
 
-**Gradient Boosting** was selected due to:
+Among the evaluated models, Gradient Boosting achieved the highest F1-score, indicating the best balance between precision and recall.
 
-* Highest accuracy and F1-score
-* Strong recall for detecting churn
-* Stable performance across cross-validation
+Although Random Forest had a slightly higher ROC AUC, the difference was marginal, and F1-score is more relevant for this problem.
 
----
+The Voting Classifier did not outperform individual models, suggesting that combining models did not provide additional benefit.
 
-## 🔍 Key Insights
+Therefore, Gradient Boosting is selected as the final model.
+
+
+## 🔍 Key Insights on feature importance
 
 * High **total usage (minutes)** increases churn likelihood
 * Frequent **customer service calls** indicate dissatisfaction
 * Customer behavior patterns are strong predictors of churn
 
----
+
 
 ## 🚀 Business Recommendations
 
@@ -115,6 +131,11 @@ The dataset contains customer-related information including:
 
 ## 📈 Conclusion
 
-Machine learning models can effectively predict customer churn and provide valuable insights. Applying these insights can help businesses reduce churn and improve customer satisfaction.
+
+The analysis shows that Gradient Boosting is the best-performing model, achieving the highest F1-score and providing a strong balance between precision and recall.
+
+This makes it well-suited for predicting customer churn, where correctly identifying at-risk customers is critical.
+
+By deploying this model, SyriaTel can proactively target customers likely to churn and implement retention strategies, ultimately reducing revenue loss and improving customer loyalty.
 
 
