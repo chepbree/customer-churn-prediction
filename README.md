@@ -113,6 +113,7 @@ Voting Ensemble did not outperform individual models
 ![Feature importance ](images/feature%20importnace.png)
 
 
+
 ## Perfomance Analysis
 
 Among the evaluated models, Gradient Boosting achieved the highest F1-score, indicating the best balance between precision and recall.
@@ -123,6 +124,11 @@ The Voting Classifier did not outperform individual models, suggesting that comb
 
 Therefore, Gradient Boosting is selected as the final model.
 
+ #### Hyperparameter tuning
+
+The improvement demonstrates that hyperparameter tuning enhances model performance by optimizing key parameters such as tree depth and learning rate.
+
+While the model performs strongly overall, further improvements can be made by focusing on increasing recall, as identifying all potential churners is critical for business impact.
 
 ## 🔍 Key Insights on feature importance
 
