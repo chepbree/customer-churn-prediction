@@ -21,24 +21,40 @@ Customer success
 The goal of this project is to build a classification model that predicts whether a customer will churn. This prediction can help the company take preventive measures to retain customers.
 
 
-## 📊 Dataset
+## 📊 Data Understanding
+The dataset contains 3,333 customer records with 21 features, including:
 
-The dataset contains customer-related information including:
+Key Feature Categories:
 
-* Call usage (total minutes, day minutes)
-* Customer service interactions
-* Subscription details
+Usage behavior (minutes, calls)
+
+Service plans (international plan, voicemail plan)
+
+Customer interactions (customer service calls)
+
+Target Variable
+churn (0 = No, 1 = Yes)
 
 
-## ⚙️ Methodology
+## Data Processing
 
-### Data Processing
+The following preprocessing steps were applied:
 
-* Feature engineering applied to usage variables
-* Categorical variables encoded using pipelines
-* Data split into training and testing sets
+Converted target variable (churn) to numeric
 
-![distrubution of churn](images/dist%20of%20churn.png)
+Removed identifiers (phone number)
+
+Removed redundant features (charge columns due to multicollinearity)
+
+Performed feature engineering:
+
+Total minutes
+Total calls
+Service call rate
+Usage ratios
+To prevent data leakage, splitting, preprocessing and feature engineering were applied using Scikit-learn pipelines.
+
+## Modelling
 
 ### Models Implemented
 
@@ -48,6 +64,16 @@ The dataset contains customer-related information including:
 * Gradient Boosting
 * Voting Ensemble
 
+## Evaluation
+
+Evaluation Metrics
+The models were evaluated using:
+
+Recall → prioritized to reduce missed churners
+Precision → measures accuracy of churn predictions
+F1-score → balance between precision and recall
+Confusion Matrix → shows prediction errors
+ROC Curve & AUC → evaluates model discrimination ability
 
 ## 📈 Model Performance
 
@@ -69,9 +95,9 @@ Random Forest achieved the highest ROC AUC (0.939)
 - This indicates it has a slightly better ability to distinguish between churners and non-churners overall, but its lower F1-score suggests it is less balanced in actual predictions.
 
 Voting Ensemble did not outperform individual models
-- This suggests that combining models did not add value, likely because Gradient Boosting already captures the patterns effectively
+- This suggests that combining models did not add value, because Gradient Boosting already captures the patterns effectively
 
--Logistc regression performed poorely both in overall perfomance
+-Logistc regression performed poorely  in overall perfomance compared to the models
 
 ## Visuals
 
@@ -107,7 +133,7 @@ Therefore, Gradient Boosting is selected as the final model.
 
 
 ## 🚀 Business Recommendations
-
+*  Use Gradient Boosting for Deployment.Deploy the Gradient Boosting model to predict churn in real time
 * Improve customer service response for frequent callers
 * Offer personalized plans for high-usage customers
 * Use model predictions to identify high-risk customers early
@@ -116,7 +142,7 @@ Therefore, Gradient Boosting is selected as the final model.
 
 ## ⚠️ Limitations
 
-* Dataset may not include all churn factors
+* Dataset may not include all churn factors like external data (e.g., competitor pricing)
 * Feature importance does not imply causation
 * Model performance may vary with new data
 
